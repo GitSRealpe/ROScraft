@@ -12,6 +12,15 @@ public class ModItems {
     public static final DeferredItem<Item> BISMUTH = ITEMS.register("bismuth",
             () -> new Item(new Item.Properties()));
 
+    // can also use supplier?, allows to code be neoforge proof? useful for
+    // intermodloaders maybe?
+    // public static final Supplier<TurtlebotItem> TURTLEBOT =
+    // ITEMS.register("turtlebot",
+    // () -> new TurtlebotItem(new Item.Properties()));
+
+    public static final DeferredItem<TurtlebotItem> TURTLEBOT = ITEMS.register("turtlebot",
+            () -> new TurtlebotItem(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

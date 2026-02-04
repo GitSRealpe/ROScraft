@@ -28,12 +28,15 @@ import net.gitsrealpe.roscraft.block.ModBlocks;
 import net.gitsrealpe.roscraft.block.entity.ModBlockEntities;
 import net.gitsrealpe.roscraft.block.entity.renderer.CameraBlockEntityRenderer;
 import net.gitsrealpe.roscraft.block.entity.renderer.PedestalBlockEntityRenderer;
+import net.gitsrealpe.roscraft.entity.ModEntities;
+import net.gitsrealpe.roscraft.entity.client.TurtlebotRenderer;
 import net.gitsrealpe.roscraft.item.ModCreativeModeTabs;
 import net.gitsrealpe.roscraft.item.ModItems;
 import net.gitsrealpe.roscraft.screen.ModMenuTypes;
 import net.gitsrealpe.roscraft.screen.custom.CameraScreen;
 import net.gitsrealpe.roscraft.screen.custom.PedestalScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -74,6 +77,7 @@ public class ROScraft {
         ModBlocks.register(modEventBus);
 
         ModBlockEntities.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         ModMenuTypes.register(modEventBus);
 
@@ -110,10 +114,10 @@ public class ROScraft {
     // You can use EventBusSubscriber to automatically register all static methods
     // in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    static class ClientModEvents {
+    public static class ClientModEvents {
         @SubscribeEvent
         static void onClientSetup(FMLClientSetupEvent event) {
-
+            EntityRenderers.register(ModEntities.TURTLEBOT.get(), TurtlebotRenderer::new);
         }
 
         @SubscribeEvent

@@ -25,6 +25,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MAGIC_BLOCK);
                         output.accept(ModBlocks.PEDESTAL.get());
                         output.accept(ModBlocks.CAMERA.get());
+                        output.accept(ModItems.TURTLEBOT.get());
 
                     }).build());
 
