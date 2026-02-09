@@ -14,14 +14,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.gitsrealpe.roscraft.block.ModBlocks;
 import net.gitsrealpe.roscraft.block.entity.ModBlockEntities;
-import net.gitsrealpe.roscraft.block.entity.renderer.CameraBlockEntityRenderer;
 import net.gitsrealpe.roscraft.block.entity.renderer.PedestalBlockEntityRenderer;
 import net.gitsrealpe.roscraft.entity.ModEntities;
 import net.gitsrealpe.roscraft.entity.client.TurtlebotRenderer;
 import net.gitsrealpe.roscraft.item.ModCreativeModeTabs;
 import net.gitsrealpe.roscraft.item.ModItems;
 import net.gitsrealpe.roscraft.screen.ModMenuTypes;
-import net.gitsrealpe.roscraft.screen.custom.CameraScreen;
 import net.gitsrealpe.roscraft.screen.custom.PedestalScreen;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -102,13 +100,11 @@ public class ROScraft {
         @SubscribeEvent
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.CAMERA_BE.get(), CameraBlockEntityRenderer::new);
         }
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
-            event.register(ModMenuTypes.CAMERA_MENU.get(), CameraScreen::new);
         }
 
     }

@@ -17,10 +17,6 @@ public class ModBlockEntities {
             "pedestal_be",
             () -> BlockEntityType.Builder.of(PedestalBlockEntity::new, ModBlocks.PEDESTAL.get()).build(null));
 
-    public static final Supplier<BlockEntityType<CameraBlockEntity>> CAMERA_BE = BLOCK_ENTITIES.register(
-            "camera_be",
-            () -> BlockEntityType.Builder.of(CameraBlockEntity::new, ModBlocks.CAMERA.get()).build(null));
-
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

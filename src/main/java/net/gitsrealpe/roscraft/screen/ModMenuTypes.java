@@ -1,7 +1,6 @@
 package net.gitsrealpe.roscraft.screen;
 
 import net.gitsrealpe.roscraft.ROScraft;
-import net.gitsrealpe.roscraft.screen.custom.CameraMenu;
 import net.gitsrealpe.roscraft.screen.custom.PedestalMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -17,9 +16,6 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<PedestalMenu>> PEDESTAL_MENU = registerMenuType(
             "pedestal_menu", PedestalMenu::new);
-
-    public static final DeferredHolder<MenuType<?>, MenuType<CameraMenu>> CAMERA_MENU = registerMenuType(
-            "camera_menu", CameraMenu::new);
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(
             String name,

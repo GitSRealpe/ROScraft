@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import net.gitsrealpe.roscraft.ROScraft;
 import net.gitsrealpe.roscraft.block.custom.MagicBlock;
 import net.gitsrealpe.roscraft.block.custom.PedestalBlock;
-import net.gitsrealpe.roscraft.block.custom.CameraBlock;
 import net.gitsrealpe.roscraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -32,10 +31,6 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> PEDESTAL = registerBlock("pedestal",
             () -> new PedestalBlock(BlockBehaviour.Properties.of()
-                    .noOcclusion()));
-
-    public static final DeferredBlock<Block> CAMERA = registerBlock("camera",
-            () -> new CameraBlock(BlockBehaviour.Properties.of()
                     .noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
