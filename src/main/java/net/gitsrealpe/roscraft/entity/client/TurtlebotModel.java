@@ -38,15 +38,17 @@ public class TurtlebotModel<T extends TurtlebotEntity> extends HierarchicalModel
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition Body = partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(8, 0)
-                .addBox(-9.0F, -1.0F, -3.0F, 12.0F, 2.0F, 12.0F, new CubeDeformation(0.0F)),
+        PartDefinition Body = partdefinition.addOrReplaceChild("Body",
+                CubeListBuilder.create().texOffs(0, 18)
+                        .addBox(-5.0F, -6.0F, -2.0F, 4.0F, 5.0F, 4.0F, new CubeDeformation(-3.0F))
+                        .texOffs(8, 1).addBox(-9.0F, -3.0F, -3.0F, 12.0F, 3.0F, 12.0F, new CubeDeformation(0.0F)),
                 PartPose.offset(3.0F, 22.0F, -3.0F));
 
         PartDefinition Wheels = Body.addOrReplaceChild("Wheels",
-                CubeListBuilder.create().texOffs(46, 0)
-                        .addBox(-8.0F, -4.0F, -3.0F, 3.0F, 6.0F, 6.0F, new CubeDeformation(-2.0F))
-                        .texOffs(0, 0).addBox(5.0F, -4.0F, -3.0F, 3.0F, 6.0F, 6.0F, new CubeDeformation(-2.0F)),
-                PartPose.offset(-3.0F, 2.0F, 3.0F));
+                CubeListBuilder.create().texOffs(0, 0)
+                        .addBox(-8.0F, -3.0F, -3.0F, 4.0F, 6.0F, 6.0F, new CubeDeformation(-1.0F))
+                        .texOffs(0, 0).addBox(4.0F, -3.0F, -3.0F, 4.0F, 6.0F, 6.0F, new CubeDeformation(-1.0F)),
+                PartPose.offset(-3.0F, 0.0F, 3.0F));
 
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
@@ -61,7 +63,7 @@ public class TurtlebotModel<T extends TurtlebotEntity> extends HierarchicalModel
             this.wheelSpeed = 0;
         }
 
-        this.wheels.zRot = this.wheelSpeed;
+        this.wheels.xRot = this.wheelSpeed;
         this.wheelSpeed++;
 
     }
