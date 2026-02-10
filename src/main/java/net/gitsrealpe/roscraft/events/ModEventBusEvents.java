@@ -28,7 +28,6 @@ public class ModEventBusEvents {
         event.put(ModEntities.TURTLEBOT.get(), TurtlebotEntity.createAttributes().build());
     }
 
-    // registrar should be only unidirectional? client->server?
     @SubscribeEvent
     public static void registerPayloads(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar("1");
