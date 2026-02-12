@@ -27,7 +27,6 @@ public class TurtlebotModel<T extends TurtlebotEntity> extends HierarchicalModel
             ResourceLocation.fromNamespaceAndPath(ROScraft.MODID, "turtlebot"), "main");
     private final ModelPart body;
     private final ModelPart wheels;
-    private float wheelSpeed;
 
     public TurtlebotModel(ModelPart root) {
         this.body = root.getChild("Body");
@@ -55,21 +54,13 @@ public class TurtlebotModel<T extends TurtlebotEntity> extends HierarchicalModel
 
     @Override
     public void setupAnim(TurtlebotEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks,
-            float netHeadYaw,
-            float headPitch) {
+            float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
 
-        if (this.wheelSpeed == 100) {
-            this.wheelSpeed = 0;
-        }
-
-        this.wheels.xRot = this.wheelSpeed;
-        this.wheelSpeed++;
-
-    }
-
-    private void wheelRotation(float rot_speed) {
-        this.wheels.zRot = rot_speed;
+        // if (this.wheelSpeed++ == 100) {
+        this.wheels.xRot = ageInTicks * 0.1f;
+        // this.wheelSpeed = 0;
+        // }
     }
 
     @Override
