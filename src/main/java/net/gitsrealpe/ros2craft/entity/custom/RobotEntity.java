@@ -43,6 +43,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import id.jros2client.JRos2ClientConfiguration;
+import id.jros2client.JRos2ClientFactory;
+import id.jrosclient.TopicSubmissionPublisher;
+import id.jrosmessages.std_msgs.StringMessage;
 
 public abstract class RobotEntity extends Mob implements MenuProvider, ROSManager.ConnectionListener {
     // private static final EntityDataAccessor<String> ROBOT_NAME =
@@ -85,6 +89,16 @@ public abstract class RobotEntity extends Mob implements MenuProvider, ROSManage
             ROS2Craft.LOGGER.info("name at constructor " + this.robotName);
 
             lidar = new Lidar(this, 180, 3.1416f, 10f);
+
+            var configBuilder = new JRos2ClientConfiguration.Builder();
+            // use configBuilder to override default parameters (network interface, RTPS
+            // settings etc)
+            var client = new JRos2ClientFactory().createClient(configBuilder.build());
+            String topicName = "/helloRos";
+            var publisher = new TopicSubmissionPublisher<>(StringMessage.class,
+                    topicName);
+            // register a new publisher for a new topic with ROS
+            client.publish(publisher);
 
         }
     }
