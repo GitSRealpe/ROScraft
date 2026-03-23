@@ -60,7 +60,7 @@ public abstract class RobotEntity extends Mob implements MenuProvider, ROSManage
     public Topic rawPublisher;
     // Track if this robot instance registered with ROS manager
     private boolean rosConnected = false;
-    private int node_id = 0;
+    private int nodeId = 0;
     Ros ros;
     public BlockPos blockPos;
     private boolean isOwner = false;
@@ -201,7 +201,7 @@ public abstract class RobotEntity extends Mob implements MenuProvider, ROSManage
                     "/ComponentManager/_container/unload_node",
                     "composition_interfaces/srv/LoadNode");
             JsonObject req = Json.createObjectBuilder()
-                    .add("unique_id", this.node_id)
+                    .add("unique_id", this.nodeId)
                     .build();
             ServiceRequest request = new ServiceRequest(req);
             ServiceResponse response = opService.callServiceAndWait(request);
@@ -212,6 +212,8 @@ public abstract class RobotEntity extends Mob implements MenuProvider, ROSManage
         if (this.rawPublisher != null)
             this.rawPublisher.unadvertise();
 
+        // ros can be null here, handle this later with sensor supperclass cleanup
+        // method
         this.lidar.clearPublisher();
         ROSManager.getInstance().removeConnectionListener(this);
     }
@@ -226,7 +228,7 @@ public abstract class RobotEntity extends Mob implements MenuProvider, ROSManage
                 .build();
         ServiceRequest request = new ServiceRequest(req);
         ServiceResponse response = opService.callServiceAndWait(request);
-        this.node_id = response.toJsonObject().getInt("unique_id");
+        this.nodeId = response.toJsonObject().getInt("unique_id");
         System.out.println(response.toString());
         // publishers
         this.rawPublisher = new Topic(ros, "/" + id + "/rawData",
